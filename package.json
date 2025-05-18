@@ -12,6 +12,7 @@
   "dependencies": {
     "airtable": "^0.12.2",
     "axios": "^1.8.4",
+    "discord": "^0.8.2",
     "discord.js": "^14.18.0",
     "dotenv": "^16.4.7",
     "sho-bot": "file:",
