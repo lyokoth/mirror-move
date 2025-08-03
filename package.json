@@ -4,9 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "node deploy-commands.js",
+    "deploy": "node commands.js",
     "start": "node .",
-    "deployandstart": "node deploy-commands.js && node ."
+    "deployandstart": "node commands.js && node ."
   },
   "keywords": [],
   "author": "",
