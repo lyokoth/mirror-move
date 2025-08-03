@@ -33,5 +33,12 @@
     "pkmn": "^1.0.7",
     "sho-bot": "file:",
     "ws": "^8.18.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^3.1.0"
   }
 }
