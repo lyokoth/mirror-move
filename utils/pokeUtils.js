@@ -45,7 +45,7 @@ const fetchPokemonSprite = (pokemon, gen) => {
 const autoCompletePokemon = async (interaction) => {
 	const focusedOption = interaction.options.getFocused(true);
 	const substring = focusedOption.value.toLowerCase();
-	let choices = pokemonFuse.search(substring).map(choice => {
+	let choices = pokeFuse.search(substring).map(choice => {
 		return choice.item;
 	});
 	choices = choices.slice(0, 24);
@@ -105,11 +105,16 @@ const classifyPokemon = (evs, nature) => {
 	return classification;
 };
 
+const parseMonoType = (input) => {
+	const types = input.split(',').map(type => type.trim());
+	return types;
+};
 
 module.exports = {
 	returnPokemonType,
 	autoCompletePokemon,
 	parsePokepaste,
+	parseMonoType,
 	fetchPokemonSprite,
 	fetchTypeHex,
 	cleanPokemonName,

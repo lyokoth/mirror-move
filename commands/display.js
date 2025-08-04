@@ -13,7 +13,7 @@ module.exports = {
                 .setRequired(true)),
 
     async execute(interaction) {
-        const parsedTeam = await parsePokepaste(interaction.options.getString('input'));
+        const parsedTeam = await parsePokePaste(interaction.options.getString('input'));
 		await interaction.reply(displayEmbed(parsedTeam.toJson()));
 	},
 };
