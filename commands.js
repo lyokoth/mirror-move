@@ -1,34 +1,42 @@
-const { REST, Routes } = require('discord.js');
-require('dotenv').config();
-const fs = require('node:fs');
+import { REST, Routes } from 'discord.js';
+import 'dotenv/config';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const commands = [];
-// Grab all the command files from the commands directory
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-// Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Read all JS files in ./commands
+const commandFiles = fs.readdirSync(path.join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
+
 for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	commands.push(command.data.toJSON());
+  const filePath = path.join(__dirname, 'commands', file);
+  const { default: command } = await import(`file://${filePath}`);
+
+  if (!command?.data?.toJSON) {
+    console.warn(`[WARN] Skipping ${file} — missing or invalid 'data' export`);
+    continue;
+  }
+
+  commands.push(command.data.toJSON());
 }
 
-// Construct and prepare an instance of the REST module
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 
-// and deploy your commands!
 (async () => {
-	try {
-		console.log(`Started refreshing ${commands.length} application (/) commands.`);
+  try {
+    console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
-		// The put method is used to fully refresh all commands in the guild with the current set
-		const data = await rest.put(
-			Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
-			{ body: commands },
-		);
+    const data = await rest.put(
+      Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
+      { body: commands },
+    );
 
-		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-	}
-	catch (error) {
-		console.error(error);
-	}
+    console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+  } catch (error) {
+    console.error(error);
+  }
 })();

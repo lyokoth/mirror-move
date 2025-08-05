@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "node commands.js",
     "start": "node .",
-    "deployandstart": "node commands.js && node ."
+    "deployandstart": "node commands.js && node .",
+    "type": "module"
   },
   "keywords": [],
   "author": "",

@@ -96,7 +96,7 @@ const classifyPokemon = (evs, nature) => {
 		'AtkSpe': 'Fast Physical Attacker',
 		'SpASpe': 'Fast Special Attacker',
 		'HPSpD': 'Special Wall',
-		'HPDef': 'Physical Walll',
+		'HPDef': 'Physical Wall',
 	};
 
 	const classificationKey = topStats.join('');
@@ -105,16 +105,12 @@ const classifyPokemon = (evs, nature) => {
 	return classification;
 };
 
-const parseMonoType = (input) => {
-	const types = input.split(',').map(type => type.trim());
-	return types;
-};
 
 module.exports = {
 	returnPokemonType,
 	autoCompletePokemon,
 	parsePokepaste,
-	parseMonoType,
+	
 	fetchPokemonSprite,
 	fetchTypeHex,
 	cleanPokemonName,
