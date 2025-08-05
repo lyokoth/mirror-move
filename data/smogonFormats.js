@@ -34,4 +34,4 @@ const smogonFormats = [
     'gen9stabmons',
 ];
 
-module.exports = smogonFormats;
+export { smogonFormats };

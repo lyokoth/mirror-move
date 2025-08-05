@@ -1342,4 +1342,4 @@ const pokemon = [
 	'basculegion-f',
 ];
 
-module.exports = { pokemon};
+export { pokemon };

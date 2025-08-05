@@ -1,9 +1,9 @@
-const { SlashCommandBuilder } = require('discord.js');
-const { parsePokePaste } = require ('../utils/module');
-const { displayEmbed } = require('../pages/module');
+import { SlashCommandBuilder } from 'discord.js';
+import { parsePokepaste } from '../utils/pokeUtils.js';
+import { displayEmbed } from '../pages/displayEmbed.js';
 require('koffing').Koffing;
 
-module.exports = {
+export default {
     data: new SlashCommandBuilder()
         .setName('display')
         .setDescription('Displays Pokémon info from PokePaste.')
@@ -13,7 +13,7 @@ module.exports = {
                 .setRequired(true)),
 
     async execute(interaction) {
-        const parsedTeam = await parsePokePaste(interaction.options.getString('input'));
-		await interaction.reply(displayEmbed(parsedTeam.toJson()));
-	},
+        const parsedTeam = await parsePokepaste(interaction.options.getString('input'));
+        await interaction.reply(displayEmbed(parsedTeam.toJson()));
+    },
 };

@@ -2,12 +2,12 @@
   "name": "sho-bot",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "node commands.js",
     "start": "node .",
-    "deployandstart": "node commands.js && node .",
-    "type": "module"
+    "deployandstart": "node commands.js && node ."
   },
   "keywords": [],
   "author": "",

@@ -48,4 +48,4 @@ const emojiString = (types) => {
 	return '\n' + returnString;
 };
 
-module.exports = { typeEmoji, emojiString, typeHex };
+export { typeVisual };

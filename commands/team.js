@@ -1,9 +1,8 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { infoEmbed, errorEmbed } from '../pages/module.js';
 import { autoCompletePokemon, cleanPokemonName } from '../utils/module.js';
-const { parseMonoTeam } = require('../utils/module.js');
 
-export default {
+module.exports = {
     data: new SlashCommandBuilder()
         .setName('info')
         .setDescription('Returns basic information regarding a given pokemon')
@@ -38,3 +37,4 @@ export default {
 
     }
 };
+

@@ -1,8 +1,9 @@
-const { SlashCommandBuilder } = require('discord.js');
-const cheerio = require('cheerio');
-const axios = require('axios');
+import { SlashCommandBuilder } from 'discord.js';
+import axios from 'axios';
+import cheerio from 'cheerio';
 
-module.exports = {
+
+export default {
 	data: new SlashCommandBuilder()
 		.setName('ding')
 		.setDescription('dong! let`s battle, `${username}`!'),

@@ -1,6 +1,6 @@
-const { SlashCommandBuilder } = require('discord.js');
-const { infoEmbed, errorEmbed } = require('../pages/module');
-const { autoCompletePokemon, cleanPokemonName } = require('../utils/module');
+import { SlashCommandBuilder } from 'discord.js';
+import { infoEmbed, errorEmbed } from '../pages/module';
+import { autoCompletePokemon, cleanPokemonName } from '../utils/module';
 
 module.exports = {
 	data: new SlashCommandBuilder()

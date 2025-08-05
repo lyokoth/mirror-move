@@ -1,7 +1,6 @@
-const {EmbedBuilder} = require('discord.js');
-const { returnPokemonType, fetchPokemonSprite, fetchTypeHex, cleanPokemonName, classifyPokemon } = require('../utils/module');
-const { emojiString } = require('../data/module');
-
+import { EmbedBuilder } from 'discord.js';
+import { returnPokemonType, fetchPokemonSprite, fetchTypeHex, cleanPokemonName, classifyPokemon } from '../utils/module.js';
+import { emojiString } from '../data/module.js';
 
 
 const displayEmbed = (json) => {
@@ -62,4 +61,4 @@ const formatDisplayData = (pokemon) => {
     }
     return str;
 }
-module.exports = { displayEmbed };
+export { displayEmbed };

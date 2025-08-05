@@ -47,4 +47,4 @@ class StringHelper {
 	}
 }
 
-module.exports = { StringHelper };
+export{ StringHelper };
