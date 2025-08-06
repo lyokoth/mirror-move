@@ -1,7 +1,8 @@
 import { EmbedBuilder } from 'discord.js';
 import { classifyPokemon } from '../utils/pokeUtils.js';
+import { StringHelper } from '../utils/stringUtils.js';
 import { emojiString } from '../data/module.js';
-
+import { cleanPokemonName, fetchPokemonSprite, fetchTypeHex } from '../utils/pokeUtils.js';
 
 const displayEmbed = (json) => {
 	const data = JSON.parse(json).teams[0];

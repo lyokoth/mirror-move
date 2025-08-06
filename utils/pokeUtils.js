@@ -1,6 +1,7 @@
 import { Dex } from '@pkmn/dex';
 import { StringHelper } from './stringUtils.js';
 import { pokemon, typeHex, smogonFormats } from '../data/module.js';
+import { Sprites } from '@pkmn/img';
 import axios from 'axios';
 import Fuse from 'fuse.js';
 import { Koffing } from 'koffing';
@@ -37,7 +38,7 @@ const cleanPokemonName = (nameString) => {
 };
 
 const fetchPokemonSprite = (pokemon, gen) => {
-  const sprite = Dex.sprites.getPokemon(pokemon, { gen }); // fixed typo: was "sprite.getPokemon"
+  const sprite = Sprites.getPokemon(pokemon, { gen }); 
   return sprite.url;
 };
 

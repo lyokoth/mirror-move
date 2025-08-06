@@ -5,11 +5,11 @@ const errorEmbed = (err) => {
 	const embed = new EmbedBuilder()
 		.setColor(0xeb3434)
 		.setTitle(err.message)
-		.setDescription('```' + err.stack + '```')
+		.setDescription('Sorry, an error occurred!')
 		.setTimestamp();
 	return {
 		embeds: [embed],
-		ephemeral: false,
+		ephemeral: true,
 	};
 };
 

@@ -1,4 +1,6 @@
 import { SlashCommandBuilder } from 'discord.js';
+import { Dex } from '@pkmn/dex';
+
 
 // Embed helper
 const infoEmbed = (type, team) => {
@@ -43,7 +45,14 @@ const getMonoTypeTeam = (type, gen = 9) => {
       poke.baseStats &&
       poke.types.includes(type) &&
       !poke.name.includes('-Totem') &&
-      !poke.name.includes('Starter') &&
+      !poke.name.includes('-Gmax') &&
+      !poke.name.includes('-Mega') &&
+      !poke.name.includes('-Starter') &&
+      !poke.name.includes('-BattleBond') &&
+      !poke.name.includes('-Hisui') &&
+      !poke.name.includes('-Galar') &&
+      !poke.name.includes('-Alola') &&
+      !poke.name.includes('-Therian') &&  
       !poke.isNonstandard
     );
   });
@@ -88,7 +97,7 @@ const typeColor = {
 
 export default {
   data: new SlashCommandBuilder()
-    .setName('monoteam')
+    .setName('mono')
     .setDescription('Generate a random mono-type team from a Pokémon type.')
     .addStringOption(option =>
       option

@@ -5,10 +5,10 @@ import * as cheerio from 'cheerio';
 export default {
   data: new SlashCommandBuilder()
     .setName('ding')
-    .setDescription("dong! let's battle!"),
+    .setDescription("dong! let's battle!" + ' (scrapes links from Pokemon Showdown)'),
 
   async execute(interaction) {
-    const markup = await axios.get('https://play.pokemonshowdown.com/sprites/gen5/');
+    const markup = await axios.get('https://play.pokemonshowdown.com/');
     const $ = cheerio.load(markup.data);
   
 

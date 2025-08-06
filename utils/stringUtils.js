@@ -47,4 +47,4 @@ class StringHelper {
 	}
 }
 
-export{ StringHelper };
+export default StringHelper;

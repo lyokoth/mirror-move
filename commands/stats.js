@@ -1,13 +1,13 @@
 import { SlashCommandBuilder } from 'discord.js';
-import { infoEmbed } from '../pages/infoEmbed.js';
-import { errorEmbed } from '../pages/errorEmbed.js';
-import { parsePokepaste } from '../utils/pokeUtils.js';
+import { statsEmbed } from '../pages/statsEmbed.js';
 import { autoCompletePokemon, cleanPokemonName } from '../utils/module.js';
+import { errorEmbed } from '../pages/errorEmbed.js';
+import { Koffing } from 'koffing';
 
 export default {
 	data: new SlashCommandBuilder()
-		.setName('summary')
-		.setDescription('Returns basic information regarding a given pokemon')
+		.setName('stats')
+		.setDescription('Shows usage stats for a given Pokemon')
 		.addStringOption(option =>
 			option
 				.setName('input')
@@ -17,27 +17,24 @@ export default {
 		.addIntegerOption(option =>
 			option
 				.setName('gen')
-				.setDescription('Choose ')
+				.setDescription('The chosen generation')
 				.setRequired(false)
 				.setMinValue(1)
 				.setMaxValue(9)),
-		
 	async autocomplete(interaction) {
 		await autoCompletePokemon(interaction);
 	},
-
 	async execute(interaction) {
 		let gen = interaction.options.getInteger('gen');
 		if (!gen) gen = 9;
-
 		const pokemon = cleanPokemonName(interaction.options.getString('input'));
-	
-
 		try {
-			const embed = await infoEmbed(pokemon, gen);
-			await interaction.reply({ embeds: [embed] });
-		} catch (err) {
-			await interaction.reply({ embeds: [errorEmbed(err)] });
+			const embed = await statsEmbed(pokemon, gen);
+			await interaction.reply(embed);
 		}
+		catch (err) {
+			await interaction.reply(errorEmbed(err));
+		}
+
 	},
 };
