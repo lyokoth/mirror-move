@@ -1,7 +1,12 @@
-const fs = require('node:fs');
-const path = require('node:path');
-const { Client, Collection, GatewayIntentBits } = require('discord.js');
-require('dotenv').config();
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'url';
+import { Client, Collection, GatewayIntentBits } from 'discord.js';
+import dotenv from 'dotenv';
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 const client = new Client({
