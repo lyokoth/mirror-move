@@ -1,9 +1,10 @@
-const { EmbedBuilder } = require('discord.js');
-const { StringHelper, fetchPokemonSprite, fetchTypeHex } = require('../utils/module');
-const { Dex } = require('@pkmn/dex');
-const { Generations } = require ('@pkmn/data');
-const { Smogon } = require ('@pkmn/smogon');
-const fetch = require('cross-fetch');
+import  { EmbedBuilder } from 'discord.js';
+import { StringHelper, fetchPokemonSprite, fetchTypeHex } from '../utils/module.js';
+import { Dex } from '@pkmn/dex';
+import { Generations } from '@pkmn/data';
+import { Smogon } from '@pkmn/smogon';
+import fetch from 'cross-fetch';
+
 
 const statsEmbed = async (pokemon, gen) => {
 	const stats = await fetchStats(pokemon, gen);
@@ -125,4 +126,4 @@ function createField(fieldName, data, inline, cutoff) {
 }
 
 
-module.exports = { statsEmbed };
+export { statsEmbed };

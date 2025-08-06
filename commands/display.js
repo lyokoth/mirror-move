@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { parsePokepaste } from '../utils/pokeUtils.js';
 import { displayEmbed } from '../pages/displayEmbed.js';
-require('koffing').Koffing;
+import { Koffing } from 'koffing';
 
 export default {
     data: new SlashCommandBuilder()

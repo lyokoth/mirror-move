@@ -1,5 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { returnPokemonType, fetchPokemonSprite, fetchTypeHex, cleanPokemonName, classifyPokemon } from '../utils/module.js';
+import { classifyPokemon } from '../utils/pokeUtils.js';
 import { emojiString } from '../data/module.js';
 
 

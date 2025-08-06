@@ -1,9 +1,11 @@
-const { EmbedBuilder } = require('discord.js');
-const { fetchPokemonSprite, fetchTypeHex, returnPokemonType } = require('../utils/module');
-const { emojiString } = require('../data/module');
-const { Dex } = require('@pkmn/dex');
-const { Generations } = require ('@pkmn/data');
-const Table = require('easy-table');
+import { EmbedBuilder } from 'discord.js';
+import Table from 'easy-table';
+import { Dex } from '@pkmn/dex';
+import { Generations } from '@pkmn/data';
+import { returnPokemonType, fetchPokemonSprite, fetchTypeHex } from '../utils/pokeUtils.js';
+import { emojiString } from '../data/module.js';
+import { StringHelper } from '../utils/module.js';
+
 
 const infoEmbed = async (pokemon, gen) => {
 	const info = await fetchInfo(pokemon, gen);
@@ -65,4 +67,4 @@ function printInfo(pokemon) {
 	console.log(pokemon['data']);
 }
 
-module.exports = { infoEmbed };
+export { infoEmbed };

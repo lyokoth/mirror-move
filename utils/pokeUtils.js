@@ -99,14 +99,15 @@ const classifyPokemon = (evs, nature) => {
 };
 
 export {
-  returnPokemonType,
-  autoCompletePokemon,
-  parsePokepaste,
-  fetchPokemonSprite,
-  fetchTypeHex,
-  cleanPokemonName,
-  autoCompleteFormat,
-  cleanFormat,
-  classifyPokemon,
-  cheerio
+    returnPokemonType,
+    autoCompletePokemon,
+    parsePokepaste,
+    fetchPokemonSprite,
+    fetchTypeHex,
+ 	StringHelper,
+  	cleanPokemonName,
+  	autoCompleteFormat,
+  	cleanFormat,
+  	classifyPokemon,
+  	cheerio
 };

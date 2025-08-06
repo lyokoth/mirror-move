@@ -1,8 +1,9 @@
-const Table = require('easy-table');
-const { Dex } = require('@pkmn/dex');
-const { Generations } = require('@pkmn/data');
-const { returnPokemonType } = require('./pokeUtils');
-const { emojiString } = require('../data/module');
+import Table from 'easy-table';
+import { Dex } from '@pkmn/dex';
+import { Generations } from '@pkmn/data';
+import { returnPokemonType } from './pokeUtils.js';
+import { emojiString } from '../data/module.js';
+
 
 const fetchTeamWeaknessTable = (team) => {
 	const tableData = [
@@ -116,9 +117,8 @@ const printPokemonWeaknessTable = (pokemon) => {
 	return returnString + '\n```' + t.toString() + '```';
 };
 
-module.exports = {
+export {
 	fetchTeamWeaknessTable,
-	fetchPokemonWeaknessTable,
 	printTeamWeaknessTable,
-	printPokemonWeaknessTable,
-};
+	fetchPokemonWeaknessTable,
+	printPokemonWeaknessTable };

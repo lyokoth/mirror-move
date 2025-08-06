@@ -1,11 +1,4 @@
-export default {
- 	returnPokemonType,
-	autoCompletePokemon,
-	parsePokepaste,
-	fetchPokemonSprite,
-	fetchTypeHex,
-	cleanPokemonName,
-	autoCompleteFormat,
-	cleanFormat,
-	classifyPokemon,
-};
+export * from './affinity.js';
+export * from './pokeUtils.js';
+export * from './stringUtils.js';
+

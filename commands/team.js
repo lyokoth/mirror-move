@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from 'discord.js';
 import { infoEmbed, errorEmbed } from '../pages/module.js';
 import { autoCompletePokemon, cleanPokemonName } from '../utils/module.js';
 
-module.exports = {
+export default {
     data: new SlashCommandBuilder()
         .setName('info')
         .setDescription('Returns basic information regarding a given pokemon')

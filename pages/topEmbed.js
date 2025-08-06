@@ -1,6 +1,6 @@
-const { EmbedBuilder } = require('discord.js');
-const axios = require('axios');
-const Table = require('easy-table');
+import { EmbedBuilder } from 'discord.js';
+import axios from 'axios';
+import Table from 'easy-table';
 
 const topEmbed = async (format) => {
 	const pokemonArray = await fetchMostUsed(format);
@@ -42,4 +42,4 @@ const formatMostUsed = (data) => {
 	return t.toString();
 };
 
-module.exports = { topEmbed };
+export  { topEmbed };

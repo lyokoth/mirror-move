@@ -1,9 +1,9 @@
-const { EmbedBuilder } = require('discord.js');
-const { returnPokemonType, fetchPokemonSprite, StringHelper, fetchTypeHex } = require('../utils/module');
-const { emojiString } = require('../data/module');
-const { Dex } = require('@pkmn/dex');
-const { Generations } = require ('@pkmn/data');
-const { Smogon } = require ('@pkmn/smogon');
+import { EmbedBuilder } from 'discord.js';
+import { returnPokemonType, fetchPokemonSprite, StringHelper, fetchTypeHex } from '../utils/pokeUtils.js';
+import { emojiString } from '../data/module.js';
+import { Dex } from '@pkmn/dex';
+import { Generations } from '@pkmn/data';
+import { Smogon } from '@pkmn/smogon';
 
 const optimizeEmbed = (json) => {
 	const data = JSON.parse(json).teams[0];
@@ -52,4 +52,4 @@ const fetchCounters = async (pokemon, gen) => {
 	return { genFormat: 'ERROR', data: 'No Stats Data Found' };
 };
 
-module.exports = { optimizeEmbed };
+export { optimizeEmbed };

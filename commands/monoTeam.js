@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from 'discord.js';
-import { infoEmbed, errorEmbed } from '../pages/module.js';
+
 // Embed helper
 const infoEmbed = (type, team) => {
   return {

@@ -2,19 +2,27 @@ import { REST, Routes } from 'discord.js';
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
+import dotenv from 'dotenv';
+
+
 
 const commands = [];
+dotenv.config();
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Read all JS files in ./commands
-const commandFiles = fs.readdirSync(path.join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
+const commandFiles = fs
+.readdirSync(path.join(__dirname, 'commands'))
+.filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
   const filePath = path.join(__dirname, 'commands', file);
-  const { default: command } = await import(`file://${filePath}`);
+  const { default: command } = await import(pathToFileURL(filePath).href);
+
 
   if (!command?.data?.toJSON) {
     console.warn(`[WARN] Skipping ${file} — missing or invalid 'data' export`);

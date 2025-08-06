@@ -1,11 +1,11 @@
-const { EmbedBuilder } = require('discord.js');
-const {
+import { EmbedBuilder } from 'discord.js';
+import {
 	printTeamWeaknessTable,
 	printPokemonWeaknessTable,
 	cleanPokemonName,
 	fetchPokemonSprite,
 	fetchTypeHex,
-} = require('../utils/module');
+} from '../utils/module.js';
 
 const teamWeaknessEmbed = (json) => {
 	const data = JSON.parse(json).teams[0];
@@ -51,4 +51,4 @@ const pokemonWeaknessEmbed = (pokemon) => {
 	};
 };
 
-module.exports = { teamWeaknessEmbed, pokemonWeaknessEmbed };
+export { teamWeaknessEmbed, pokemonWeaknessEmbed };

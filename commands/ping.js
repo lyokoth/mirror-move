@@ -1,9 +1,9 @@
 import { SlashCommandBuilder } from 'discord.js';
 import axios from 'axios';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 
 
-export default {
+export default { 
 	data: new SlashCommandBuilder()
 		.setName('ding')
 		.setDescription('dong! let`s battle, `${username}`!'),

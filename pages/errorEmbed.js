@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
+import { EmbedBuilder } from 'discord.js';
 
 const errorEmbed = (err) => {
 	console.error(err);
@@ -13,4 +13,4 @@ const errorEmbed = (err) => {
 	};
 };
 
-module.exports = { errorEmbed };
+export { errorEmbed };
