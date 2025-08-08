@@ -21,7 +21,7 @@ const optimizeEmbed = (json) => {
 	});
 	return {
 		embeds: embeds,
-		ephemeral: false,
+		flags: 0,
 	};
 };
 

@@ -12,7 +12,7 @@ const topEmbed = async (format) => {
 
 	return {
 		embeds: [embed],
-		ephemeral: false,
+		flags: 0,
 	};
 };
 

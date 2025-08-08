@@ -12,7 +12,7 @@ export default {
 		.addStringOption(option =>
 			option
 				.setName('input')
-				.setDescription('The input PokePaste')
+				.setDescription('input a PokePaste link')
 				.setRequired(true)),
 	async execute(interaction) {
 		const parsedTeam = await parsePokepaste(interaction.options.getString('input'));

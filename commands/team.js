@@ -4,37 +4,33 @@ import { autoCompletePokemon, cleanPokemonName } from '../utils/module.js';
 
 export default {
     data: new SlashCommandBuilder()
-        .setName('info')
-        .setDescription('Returns basic information regarding a given pokemon')
+        .setName('teambuilder')
+        .setDescription('Builds a randomized team with the given Pokemon')
         .addStringOption(option =>
             option
                 .setName('input')
                 .setDescription('The input Pokemon')
                 .setRequired(true)
                 .setAutocomplete(true))
-        .addIntegerOption(option =>
+        .addStringOption(option =>
             option
-                .setName('gen')
-                .setDescription('The chosen generation')
-                .setRequired(false)
-                .setMinValue(1)
-                .setMaxValue(9)),
+                .setName('format')
+                .setDescription('The format for the team (e.g., OU, Ubers)')
+                .setRequired(true)),
     async autocomplete(interaction) {
         await autoCompletePokemon(interaction);
     }
     ,
     async execute(interaction) {
-        let gen = interaction.options.getInteger('gen');
-        if (!gen) gen = 9;
-        const pokemon = cleanPokemonName(interaction.options.getString('input'));
+        const input = interaction.options.getString('input');
+        const format = interaction.options.getString('format');
         try {
-            const embed = await infoEmbed(pokemon, gen);
-            await interaction.reply(embed);
+            const team = await buildRandomTeam(input, format);
+            await interaction.reply({ embeds: [teamEmbed(team)] });
+        } catch (error) {
+            await interaction.reply(errorEmbed(error.message));
         }
-        catch (err) {
-            await interaction.reply(errorEmbed(err));
-        }
-
     }
 };
 
+//  add teambuilder based on format and tier

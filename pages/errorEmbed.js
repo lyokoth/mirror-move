@@ -1,4 +1,5 @@
-import { EmbedBuilder } from 'discord.js';
+import pkg from 'discord.js';
+const { EmbedBuilder, InteractionResponseFlags } = pkg;
 
 const errorEmbed = (err) => {
 	console.error(err);
@@ -9,7 +10,7 @@ const errorEmbed = (err) => {
 		.setTimestamp();
 	return {
 		embeds: [embed],
-		ephemeral: true,
+		flags: InteractionResponseFlags.Ephemeral,
 	};
 };
 

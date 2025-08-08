@@ -4,7 +4,6 @@ import { Dex } from '@pkmn/dex';
 import { Generations } from '@pkmn/data';
 import { returnPokemonType, fetchPokemonSprite, fetchTypeHex } from '../utils/pokeUtils.js';
 import { emojiString } from '../data/module.js';
-import { StringHelper } from '../utils/module.js';
 
 
 const infoEmbed = async (pokemon, gen) => {
@@ -25,7 +24,7 @@ const infoEmbed = async (pokemon, gen) => {
 
 	return {
 		embeds: [embed],
-		ephemeral: false,
+		flags: 0,
 	};
 };
 

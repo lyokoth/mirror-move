@@ -28,7 +28,7 @@ const teamWeaknessEmbed = (json) => {
 
 	return {
 		embeds: [embed],
-		ephemeral: false,
+		flags: 0,
 	};
 };
 
@@ -47,7 +47,7 @@ const pokemonWeaknessEmbed = (pokemon) => {
 
 	return {
 		embeds: [embed],
-		ephemeral: false,
+		flags: 0,
 	};
 };
 

@@ -41,7 +41,7 @@ const statsEmbed = async (pokemon, gen) => {
 
 	return {
 		embeds: [embed],
-		ephemeral: false,
+		flags: 0,
 	};
 };
 

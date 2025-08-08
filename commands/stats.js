@@ -17,7 +17,7 @@ export default {
 		.addIntegerOption(option =>
 			option
 				.setName('gen')
-				.setDescription('The chosen generation')
+				.setDescription('Which gen is it from?')
 				.setRequired(false)
 				.setMinValue(1)
 				.setMaxValue(9)),

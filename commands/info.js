@@ -37,7 +37,8 @@ export default {
 			const embed = await infoEmbed(pokemon, gen);
 			await interaction.reply({ embeds: [embed] });
 		} catch (err) {
-			await interaction.reply({ embeds: [errorEmbed(err)] });
+			await interaction.reply(errorEmbed(err));
+
 		}
 	},
 };

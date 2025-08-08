@@ -24,7 +24,7 @@ const setsEmbed = async (pokemon, gen) => {
 		});
 		return {
 			embeds: [embed],
-			ephemeral: false,
+			flags: 0,
 		};
 	}
 	sets.data.forEach((set) => {
@@ -40,7 +40,7 @@ const setsEmbed = async (pokemon, gen) => {
 
 	return {
 		embeds: [embed],
-		ephemeral: false,
+		flags: 0,
 	};
 };
 

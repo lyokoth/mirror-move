@@ -7,5 +7,6 @@ export default {
         console.log('Logged in as ' + client.user.tag);
         client.user.setActivity('Pokémon Showdown', { type: 'WATCHING' });
         client.user.setStatus('online');
+   
     },
 };
