@@ -1,79 +1,15 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { Dex } from '@pkmn/dex';
+import Table from 'easy-table';
+import { typeEmoji } from '../data/typeVisual.js';
 
 
-// Embed helper
-const infoEmbed = (type, team) => {
-  return {
-    embeds: [
-      {
-        title: `Random ${capitalize(type)}-Type Team`,
-        description: team.map((p, i) => `**${i + 1}.** ${p}`).join('\n'),
-        color: typeColor[type] ?? 0x5149bf
-      }
-    ]
-  };
-};
-
-// Error helper
-const errorEmbed = (msg) => {
-  return {
-    embeds: [
-      {
-        title: 'Error',
-        description: msg,
-        color: 0xff4f4f
-      }
-    ]
-  };
-};
-
-// Autocomplete helper for types
-const autoCompleteType = async (interaction) => {
-  const focused = interaction.options.getFocused(true).value.toLowerCase();
-  const filtered = validTypes.filter(t => t.startsWith(focused)).slice(0, 25);
-  await interaction.respond(filtered.map(t => ({ name: capitalize(t), value: t })));
-};
-
-// Returns a shuffled team of 6 Pokémon of the given type
-const getMonoTypeTeam = (type, gen = 9) => {
-  const allPokemon = Dex.species.all();
-
-  const filtered = allPokemon.filter(poke => {
-    return (
-      poke.gen <= gen &&
-      poke.baseStats &&
-      poke.types.includes(type) &&
-      !poke.name.includes('-Totem') &&
-      !poke.name.includes('-Gmax') &&
-      !poke.name.includes('-Mega') &&
-      !poke.name.includes('-Starter') &&
-      !poke.name.includes('-BattleBond') &&
-      !poke.name.includes('-Hisui') &&
-      !poke.name.includes('-Galar') &&
-      !poke.name.includes('-Alola') &&
-      !poke.name.includes('-Therian') &&  
-      !poke.isNonstandard
-    );
-  });
-
-  if (filtered.length < 6) return [];
-
-  const shuffled = filtered.sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, 6).map(p => p.name);
-};
-
-// Utility: Capitalize the first letter
-const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
-
-// Valid Pokémon types
 const validTypes = [
   'normal', 'fire', 'water', 'electric', 'grass', 'ice',
   'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug',
   'rock', 'ghost', 'dragon', 'dark', 'steel', 'fairy'
 ];
 
-// Optional: Hex colors for each type
 const typeColor = {
   fire: 0xF08030,
   water: 0x6890F0,
@@ -95,10 +31,108 @@ const typeColor = {
   fairy: 0xEE99AC
 };
 
+const items = [
+  'Leftovers', 'Life Orb', 'Choice Band', 'Choice Specs',
+  'Focus Sash', 'Assault Vest', 'Black Sludge', 'Sitrus Berry'
+];
+
+const formatStats = (stats, bst) => {
+  const t = new Table();
+  t.cell('HP', stats.hp);
+  t.cell('Atk', stats.atk);
+  t.cell('Def', stats.def);
+  t.cell('SpA', stats.spa);
+  t.cell('SpD', stats.spd);
+  t.cell('Spe', stats.spe);
+  t.cell('BST', bst);
+  t.newRow();
+  return t.toString();
+};
+
+const capitalize = s => s.charAt(0).toUpperCase() + s.slice(1);
+
+const getMonoTypeTeam = (type, gen = 9) => {
+  const allPokemon = Dex.species.all();
+
+  const filtered = allPokemon.filter(p => {
+    return (
+      p.gen <= gen &&
+      p.baseStats &&
+      p.types.map(t => t.toLowerCase()).includes(type) &&
+      !p.name.includes('-Totem') &&
+      !p.name.includes('-Gmax') &&
+      !p.name.includes('-Mega') &&
+      !p.isNonstandard
+    );
+  });
+
+  if (filtered.length < 6) return [];
+
+  // Shuffle and pick 6 unique families
+  const usedFamilies = new Set();
+  const team = [];
+
+  const shuffled = filtered.sort(() => Math.random() - 0.5);
+  for (const p of shuffled) {
+    const baseSpecies = p.baseSpecies || p.name;
+    if (!usedFamilies.has(baseSpecies)) {
+      usedFamilies.add(baseSpecies);
+      team.push(p);
+    }
+    if (team.length === 6) break;
+  }
+
+  // Assign random items
+  return team.map(p => ({
+    name: p.name,
+    types: p.types,
+    baseStats: p.baseStats,
+    abilities: p.abilities,
+    item: items[Math.floor(Math.random() * items.length)]
+  }));
+};
+
+const infoEmbed = (type, team) => {
+  return {
+    embeds: [
+      {
+        title: `Randomized ${capitalize(type)} Team`,
+        description: team.map((p, i) => {
+          const emojis = p.types.map(t => typeEmoji(t)).join(' ');  // <-- renamed variable here
+          const typeStr = p.types.join(' / ');
+          const abilitiesStr = Object.values(p.abilities).join(', ');
+          return `**${i + 1}. ${p.name}**  
+_Type:_ ${typeStr}  ${emojis}
+_Abilities:_ ${abilitiesStr}  \n${formatStats(p.baseStats, p.baseStats.bst)}
+_Held Item:_ ${p.item}`;
+        }).join('\n\n'),
+        color: typeColor[type] || 0x5149bf
+      }
+    ]
+  };
+};
+
+
+const errorEmbed = (msg) => ({
+  embeds: [
+    {
+      title: 'Error',
+      description: msg,
+      color: 0xff4f4f
+    }
+  ]
+});
+
+const autoCompleteType = async (interaction) => {
+  const focused = interaction.options.getFocused(true).value.toLowerCase();
+  const filtered = validTypes.filter(t => t.startsWith(focused)).slice(0, 25);
+  await interaction.respond(filtered.map(t => ({ name: capitalize(t), value: t })));
+};
+
 export default {
   data: new SlashCommandBuilder()
     .setName('mono')
-    .setDescription('Generate a random mono-type team from a Pokémon type.')
+    .setDescription('Generate randomized team by type.')
     .addStringOption(option =>
       option
         .setName('input')

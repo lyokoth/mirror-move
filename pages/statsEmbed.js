@@ -9,7 +9,7 @@ import fetch from 'cross-fetch';
 const statsEmbed = async (pokemon, gen) => {
 	const stats = await fetchStats(pokemon, gen);
 	const embed = new EmbedBuilder()
-		.setTitle('Stats for ' + pokemon)
+		.setTitle(`${pokemon}'s Stats`)
 		.setThumbnail(fetchPokemonSprite(pokemon.toLowerCase(), 'gen5ani'))
 		.setFooter({ text: stats.genFormat })
 		.setTimestamp()
