@@ -55,44 +55,6 @@ const autoCompletePokemon = async (interaction) => {
   );
 };
 
-const buildRandomTeam = (type, gen, format) => {
-  const sprites = Sprites.getPokemon(type, { gen }, { format: 'OU' });
-  const allPokemon = Dex.species.all();
-  const format = Dex.formats.get(format);
-  const formatData = Dex.formatsData;
-
-
-  // logic for buildng OU team
-  const filtered = allPokemon.filter(poke => {
-    if (poke.gen > gen) return false;
-    if (!poke.baseStats) return false;
-    if (!poke.types.includes(type)) return false;
-    if (poke.isNonstandard) return false;
-
-  // for gen9 OU
-    const bannedForms = ['-Totem', '-Gmax', '-Mega']
-    if (bannedForms.some(form => poke.name.includes(form))) return false;
-
-       const speciesFormatData = Dex.formatsData[poke.id];
-    if (!speciesFormatData) return false;
-    const allowedTiers = ['OU', 'UU', 'RU', 'NU', 'PU', 'ZU'];
-    if (!allowedTiers.includes(speciesFormatData.tier)) return false;
-
-    // Banlist check
-    if (format.banlist.includes(poke.name)) return false;
-
-    return true;
-  });
-
-  const team = [];
-  while (team.length < 6 && filtered.length > 0, i++) {
-    const randomIndex = Math.floor(Math.random() * filtered.length);
-    team.push(filtered[randomIndex]);
-    filtered.splice(randomIndex, 1);
-  }
-
-  return team;
-};
 
 const autoCompleteFormat = async (interaction) => {
   const focusedOption = interaction.options.getFocused(true);
