@@ -8,6 +8,7 @@
 - [Display]
 - [Summary]
 - [Stats]
+-[Mono]
 - [Battle]
 
 
@@ -24,6 +25,12 @@ Showing an OU team from PokePaste.
 ![dsplay](assets\display.png)
 
 
+
+```/mono````
+
+Createes a mono-type team.
+
+![mono](assets/mono.png)
 
 
 
