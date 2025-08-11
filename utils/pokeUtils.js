@@ -26,6 +26,68 @@ const returnPokemonType = (pokemon) => {
   return Dex.species.get(pokemon).types;
 };
 
+const items = [
+  'Leftovers', 'Life Orb', 'Choice Band', 'Choice Specs', 'Choice Scarf',
+  'Assault Vest', 'Black Sludge', 'Sitrus Berry', 'Figy Berry', 'Wiki Berry',
+  'Aguav Berry', 'Iapapa Berry'
+];
+
+// Helper to assign random items after team is built
+const assignItems = (team) => {
+  return team.map(mon => ({
+    ...mon,
+    item: items[Math.floor(Math.random() * items.length)]
+  }));
+};
+
+const buildRandomTeam = (type, gen, format) => {
+  const allPokemon = Dex.species.all();
+  const formatData = Dex.formats.get(format);
+
+  const filtered = allPokemon.filter(poke => {
+    if (poke.gen > gen) return false;
+    if (!poke.baseStats) return false;
+    if (!poke.types.includes(type)) return false;
+    if (poke.isNonstandard) return false;
+
+    const bannedForms = ['-Totem', '-Gmax', '-Mega'];
+    if (bannedForms.some(form => poke.name.includes(form))) return false;
+
+    const speciesFormatData = Dex.formatsData[poke.id];
+    if (!speciesFormatData) return false;
+
+    const allowedTiers = ['OU', 'UU', 'RU', 'NU', 'PU', 'ZU'];
+    if (!allowedTiers.includes(speciesFormatData.tier)) return false;
+
+    if (formatData?.banlist?.includes(poke.name)) return false;
+
+    return true;
+  });
+
+  const team = [];
+  const usedFamilies = new Set();
+
+  while (team.length < 6 && filtered.length > 0) {
+    const randomIndex = Math.floor(Math.random() * filtered.length);
+    const chosen = filtered[randomIndex];
+
+    // Get the "family" ID (base species of the evolution line)
+    const baseSpecies = chosen.baseSpecies || chosen.name;
+
+    if (!usedFamilies.has(baseSpecies)) {
+      team.push(chosen);
+      usedFamilies.add(baseSpecies);
+    }
+
+    filtered.splice(randomIndex, 1);
+  }
+
+  // Assign random items here before returning
+  return assignItems(team);
+};
+
+
+
 const cleanPokemonName = (nameString) => {
   let pokemon = Dex.species.get(nameString);
   if (pokemon.exists) return pokemon.name;
@@ -111,5 +173,6 @@ export {
   	autoCompleteFormat,
   	cleanFormat,
   	classifyPokemon,
-  	cheerio
+  	cheerio,
+    buildRandomTeam      
 };
