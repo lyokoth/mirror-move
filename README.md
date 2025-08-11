@@ -15,14 +15,14 @@
 ```/stats```
 Showcasing stats for Duraludon.
 
-![stats](assets\stats.png)
+![stats](assets/stats.png)
 
 
 ```/display```
 
 Showing an OU team from PokePaste.
 
-![dsplay](assets\display.png)
+![dsplay](assets/display.png)
 
 
 
