@@ -33,6 +33,10 @@ Createes a mono-type team.
 ![mono](assets/mono.png)
 
 
+```/matchup````
+
+```/set````
+
 
 ## Coming soon 
 

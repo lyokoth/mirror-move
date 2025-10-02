@@ -88,10 +88,11 @@ const getMonoTypeTeam = (type, gen = 9) => {
     types: p.types,
     baseStats: p.baseStats,
     abilities: p.abilities,
-    item: items[Math.floor(Math.random() * items.length)]
+    item: items[Math.floor(Math.random() * items.length)],
+    nature: p.nature 
   }));
 };
-
+  
 const infoEmbed = (type, team) => {
   return {
     embeds: [
