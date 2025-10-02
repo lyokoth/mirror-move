@@ -3,27 +3,25 @@ import { SlashCommandBuilder } from "discord.js";
 import { Smogon } from "@pkmn/smogon";  
 import { Dex } from "@pkmn/dex";
 import { Generations } from "@pkmn/data";
+import fetch from "cross-fetch";
 import { fetchPokemonSprite, fetchTypeHex } from "../utils/pokeUtils.js";
 
-// set up generations + smogon
-const gens = new Generations(Dex);
-const smogon = new Smogon(gens);
+export default {
+  data: new SlashCommandBuilder()
+    .setName("set")
+    .setDescription("Shows the recommended/most common set for a Pokémon.")
+    .addStringOption(option =>
+      option.setName("pokemon")
+        .setDescription("Enter a valid Pokémon name")
+        .setRequired(true)
+    )
+    .addStringOption(option =>
+      option.setName("tier")
+        .setDescription("Tier (default: gen9ou)")
+        .setRequired(false)
+    ),
 
-export const data = new SlashCommandBuilder()
-  .setName("set")
-  .setDescription("Shows the recommended/most common set for a Pokémon.")
-  .addStringOption(option =>
-    option.setName("pokemon")
-      .setDescription("Enter a valid Pokémon name")
-      .setRequired(true)
-  )
-  .addStringOption(option =>
-    option.setName("tier")
-      .setDescription("Tier (default: gen9ou)")
-      .setRequired(false)
-  );
-
-export async function execute(interaction) {
+  async execute(interaction) {
   const pokemonName = interaction.options.getString("pokemon");
   const tier = interaction.options.getString("tier") || "gen9ou";
 
@@ -32,8 +30,20 @@ export async function execute(interaction) {
     return interaction.reply({ content: `❌ Pokémon **${pokemonName}** not found.`, ephemeral: true });
   }
 
+  // Initialize Smogon with fetch and determine generation from tier
+  const gens = new Generations(Dex);
+  const smogon = new Smogon(fetch, true);
+  
+  // Extract generation number from tier (e.g., "gen9ou" -> 9)
+  const genMatch = tier.match(/gen(\d+)/);
+  const genNumber = genMatch ? parseInt(genMatch[1]) : 9;
+  const gen = gens.get(genNumber);
+
+  // Get the proper format for this tier
+  const genFormat = Smogon.format(gen, species);
+  
   // Fetch Smogon sets for the Pokémon in the tier
-  const sets = await smogon.sets(species, tier);
+  const sets = await smogon.sets(gen, species, genFormat);
   if (!sets || sets.length === 0) {
     return interaction.reply({ content: `No sets found for **${species.name}** in **${tier}**.`, ephemeral: true });
   }
@@ -57,4 +67,5 @@ export async function execute(interaction) {
   };
 
   return interaction.reply({ embeds: [embed] });
-}
+  }
+};

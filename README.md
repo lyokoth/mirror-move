@@ -37,6 +37,10 @@ Createes a mono-type team.
 
 ```/set````
 
+![set](assets/set.png)
+
+Displays a well known or common set for a Pokemon. (ie: best item, best nature, best moves)
+
 
 ## Coming soon 
 

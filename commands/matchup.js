@@ -7,31 +7,32 @@ import { fetchPokemonSprite, fetchTypeHex } from "../utils/pokeUtils.js";
 
 const gens = new Generations(Dex);
 
-export const data = new SlashCommandBuilder()
-  .setName("matchup")
-  .setDescription("Show a damage calculation between two Pokémon")
-  .addStringOption(option =>
-    option.setName("attacker")
-      .setDescription("Attacking Pokémon (e.g. Haxorus)")
-      .setRequired(true)
-  )
-  .addStringOption(option =>
-    option.setName("move")
-      .setDescription("Move the attacker is using (e.g. Earthquake)")
-      .setRequired(true)
-  )
-  .addStringOption(option =>
-    option.setName("defender")
-      .setDescription("Defending Pokémon (e.g. Skarmory)")
-      .setRequired(true)
-  )
-  .addStringOption(option =>
-    option.setName("tier")
-      .setDescription("Tier (default: gen9ou)")
-      .setRequired(false)
-  );
+export default {
+  data: new SlashCommandBuilder()
+    .setName("matchup")
+    .setDescription("Show a damage calculation between two Pokémon")
+    .addStringOption(option =>
+      option.setName("attacker")
+        .setDescription("Attacking Pokémon (e.g. Haxorus)")
+        .setRequired(true)
+    )
+    .addStringOption(option =>
+      option.setName("move")
+        .setDescription("Move the attacker is using (e.g. Earthquake)")
+        .setRequired(true)
+    )
+    .addStringOption(option =>
+      option.setName("defender")
+        .setDescription("Defending Pokémon (e.g. Skarmory)")
+        .setRequired(true)
+    )
+    .addStringOption(option =>
+      option.setName("tier")
+        .setDescription("Tier (default: gen9ou)")
+        .setRequired(false)
+    ),
 
-export async function execute(interaction) {
+  async execute(interaction) {
   const attackerName = interaction.options.getString("attacker");
   const moveName = interaction.options.getString("move");
   const defenderName = interaction.options.getString("defender");
@@ -83,4 +84,5 @@ export async function execute(interaction) {
   };
 
   return interaction.reply({ embeds: [embed] });
-}
+  }
+};
