@@ -21,6 +21,7 @@
     "@pkmn/randoms": "^0.9.37",
     "@pkmn/smogon": "^0.5.23",
     "@pkmn/types": "^4.0.0",
+    "@smogon/calc": "^0.10.0",
     "airtable": "^0.12.2",
     "axios": "^1.11.0",
     "cheerio": "^1.1.2",

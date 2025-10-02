@@ -34,6 +34,7 @@ const statsEmbed = async (pokemon, gen) => {
 	embed.addFields({ name: '\u200b', value: '\u200b', inline: true });
 	embed.addFields(createField('Spreads:', parseSpreads(stats.data.spreads), true, 5));
 	embed.addFields(createField('Items:', stats.data.items, true, 5));
+
 	if (Object.keys(stats.data.counters).length != 0) {
 		embed.addFields({ name: 'Counters:', value: '```' +
 		Object.keys(stats.data.counters).toString().split(',').join(', ') + '```' });

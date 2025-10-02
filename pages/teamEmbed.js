@@ -1,6 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
 import Table from 'easy-table';
 import { Dex } from '@pkmn/dex';
+import { Generations } from '@pkmn/data';
 import { emojiString } from '../data/module.js';
 import { fetchPokemonSprite, fetchTypeHex } from '../utils/pokeUtils.js';
 import { Smogon } from '@pkmn/smogon';
@@ -22,6 +23,7 @@ const formatStats = (stats) => {
 };
 
 const teamEmbed = async (team, pokemon, gen) => {
+  
   if (!team.length) throw new Error('Empty team array');
   
   const embed = new EmbedBuilder()
@@ -33,6 +35,16 @@ const teamEmbed = async (team, pokemon, gen) => {
   
 
   let description = '';
+
+embed.addFields([{
+  name: 'Moves:',
+  value: '```' + team.map(mon => {
+    const moveset = Smogon.get(gen).moveset.get(mon.name);
+    const moves = moveset ? moveset.recommendedMoves.slice(0, 4).join(', ') : 'No moves data';
+    return `${mon.name}: ${moves}`;
+  }).join('\n') + '```',
+  inline: false,
+}]);
 
   for (const mon of team) {
     const data = Dex.species.get(mon.name);

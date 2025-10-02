@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { Dex } from '@pkmn/dex';
 import Table from 'easy-table';
-import { typeEmoji } from '../data/typeVisual.js';
+
 
 
 const validTypes = [
