@@ -1,4 +1,5 @@
-import type * as I from '../interfaces/index.js';
+import { toID } from '@pkmn/data';
+import type * as I from './interface.ts';
 
 const ADV = [
  'Air Lock',
@@ -336,12 +337,43 @@ const SV = SS.concat([
 
 export const ABILITIES_BY_GEN = [[], ADV, DPP, BW, XY, SM, SS, SV];
 
-export class Abilities implements I.Abilties {
+export class Abilities implements I.Abilities {
     private readonly gen: I.GenNum; 
 
     constructor(gen: I.GenNum) {
         this.gen = gen;
     }
 
-    get(id: IArguments.)
+    get(id: I.ID) {
+        return ABILITIES_BY_GEN[this.gen][id];
+    }
+
+    *[Symbol.iterator](): IterableIterator<I.Ability> {
+        for (const ability of ABILITIES_BY_GEN[this.gen]) {
+            yield this.get(id as I.ID);
+        }
+    }
+}
+
+class Ability implements I.Ability {
+    readonly kind: 'Ability' = 'Ability';
+    readonly id: I.ID;
+    readonly name: I.AbilityName;
+
+    constructor(name: string) {
+        this.kind = 'Ability';
+        this.id = toID(name);
+        this.name = name as I.AbilityName;
+    }
+}
+
+const ABILITIES_BY_ID: Array<{ [id: string]: Ability }> = [];
+
+for (const abilities of ABILITIES_BY_GEN) {
+    const map: { [id: string]: Ability } = {};
+    for (const name of abilities) {
+        const ability = new Ability(name);
+        map[ability.id] = ability
+    }
+    ABILITIES_BY_ID.push(map);
 }
