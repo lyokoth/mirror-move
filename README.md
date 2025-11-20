@@ -26,16 +26,16 @@ Showing an OU team from PokePaste.
 
 
 
-```/mono````
+```/mono```
 
 Createes a mono-type team.
 
 ![mono](assets/mono.png)
 
 
-```/matchup````
+```/matchup```
 
-```/set````
+```/set```
 
 ![set](assets/set.png)
 
@@ -50,4 +50,4 @@ Displays a well known or common set for a Pokemon. (ie: best item, best nature, 
 
 ```/battle```
 
-- AI that can battle you in the server (may be a seperate repo)
+- Allows Discord users to request the AI to battle them on showdown
