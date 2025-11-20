@@ -45,7 +45,7 @@ export class ShowdownClient {
 
         //handling login and challstr
         if (msg.startsWith("|challstr|")) {
-            const challstr = lines.split("|challstr|")[1];
+            const challstr = msg.split("|challstr|")[1];
             this.login(challstr);
         }
         //handling battle messages
