@@ -2,6 +2,7 @@ import WebSocket from "ws";
 import fetch from "node-fetch";
 import { URLSearchParams } from "url";
 
+//todo: add server selection
 export class ShowdownClient {
     private ws!: WebSocket;
     private username: string;

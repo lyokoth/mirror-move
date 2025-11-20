@@ -51,3 +51,4 @@ Displays a well known or common set for a Pokemon. (ie: best item, best nature, 
 ```/battle```
 
 - AI that can battle you in the server (may be a seperate repo)
+- split the battle commands into one for the Discord bot and the other for the Showdown server.
