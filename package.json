@@ -26,6 +26,7 @@
     "axios": "^1.11.0",
     "cheerio": "^1.1.2",
     "cross-fetch": "^4.1.0",
+    "crypto": "^1.0.1",
     "discord": "^0.8.2",
     "discord.js": "^14.18.0",
     "dotenv": "^16.4.7",
@@ -33,9 +34,10 @@
     "fuse": "^0.12.1",
     "fuse.js": "^7.1.0",
     "koffing": "^1.0.0",
+    "node-fetch": "^3.3.2",
     "pkmn": "^1.0.7",
     "sho-bot": "file:",
-    "ws": "^8.18.1"
+    "ws": "^8.18.3"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
