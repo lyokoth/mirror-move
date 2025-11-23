@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Iron Moth",
+    "item": "Booster Energy",
+    "ability": "Quark Drive",
+    "teraType": "Ghost",
+    "evs": "40 HP / 84 Def / 132 SpA / 252 Spe",
+    "nature": "Timid",
+    "ivs": "0 Atk",
+    "moves": ["Fiery Dance", "Sludge Wave", "Psychic", "Substitute"]
+  },
+  {
+    "name": "Landorus-Therian",
+    "item": "Earth Plate",
+    "ability": "Intimidate",
+    "teraType": "Water",
+    "evs": "24 HP / 232 Atk / 252 Spe",
+    "nature": "Jolly",
+    "moves": ["Stealth Rock", "Earthquake", "Stone Edge", "Taunt"]
+  },
+  {
+    "name": "Samurott-Hisui",
+    "item": "Focus Sash",
+    "ability": "Sharpness",
+    "teraType": "Ghost",
+    "evs": "252 Atk / 4 SpD / 252 Spe",
+    "nature": "Adamant",
+    "moves": ["Ceaseless Edge", "Razor Shell", "Sucker Punch", "Knock Off"]
+  },
+  {
+    "name": "Kingambit",
+    "item": "Air Balloon",
+    "ability": "Supreme Overlord",
+    "teraType": "Fire",
+    "evs": "80 HP / 252 Atk / 176 Spe",
+    "nature": "Adamant",
+    "moves": ["Swords Dance", "Iron Head", "Low Kick", "Sucker Punch"]
+  },
+  {
+    "name": "Roaring Moon",
+    "item": "Booster Energy",
+    "ability": "Protosynthesis",
+    "teraType": "Flying",
+    "evs": "168 HP / 144 Atk / 52 Def / 144 Spe",
+    "nature": "Adamant",
+    "moves": ["Dragon Dance", "Knock Off", "Earthquake", "Acrobatics"]
+  },
+  {
+    "name": "Gholdengo",
+    "item": "Rocky Helmet",
+    "ability": "Good as Gold",
+    "teraType": "Fairy",
+    "evs": "252 HP / 220 Def / 16 SpA / 20 Spe",
+    "nature": "Bold",
+    "ivs": "0 Atk",
+    "moves": ["Hex", "Thunder Wave", "Nasty Plot", "Recover"]
+  }
+]

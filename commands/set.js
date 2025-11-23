@@ -1,4 +1,4 @@
-// commands/set.js
+// Returns a recommended set for
 import { SlashCommandBuilder } from "discord.js";
 import { Smogon } from "@pkmn/smogon";  
 import { Dex } from "@pkmn/dex";

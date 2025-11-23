@@ -1,12 +1,25 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import WebSocket from 'ws';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { Client, Collection, GatewayIntentBits } from 'discord.js';
 import dotenv from 'dotenv';
+import { ShowdownClient } from './client/ShowdownClient';
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Initialize ShowdownClient, will have to make password later.
+const sho_bot = new ShowdownClient("Mirror Move AI", process.env.SHOWDOWN_PASSWORD, "ws://sim3.psim.us:8000/showdown/websocket");
+
+sho_bot.connect();
+
+sho_bot.on("ready", () => {
+    console.log("[Mirror Move] Bot is ready!");
+});
+
+
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, 
