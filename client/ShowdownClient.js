@@ -1,4 +1,7 @@
 // ShowdownClient.js
+// Change everything from .ts to .js
+
+
 import WebSocket from "ws";
 import fetch from "node-fetch";
 import { URLSearchParams, fileURLToPath } from "url";

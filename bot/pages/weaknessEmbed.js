@@ -5,7 +5,7 @@ import {
 	cleanPokemonName,
 	fetchPokemonSprite,
 	fetchTypeHex,
-} from '../utils/module.js';
+} from '../../utils/module.js';
 
 const teamWeaknessEmbed = (json) => {
 	const data = JSON.parse(json).teams[0];
