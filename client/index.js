@@ -3,16 +3,16 @@ dotenv.config();
 
 import { ShowdownClient } from "./ShowdownClient.js";
 
-// Create the bot instance using your credentials
+// Creating the showdown client, login, and server connection
 const server = process.env.SHOWDOWN_SERVER || "ws://localhost.psim.us:8000/showdown/websocket";
 const bot = new ShowdownClient(
-    process.env.SHOWDOWN_USER,       // your bot’s username
-    process.env.SHOWDOWN_PASSWORD,   // your bot’s password
-    "ws://localhost.psim.us:8000/showdown/websocket" // Showdown server URL
+    process.env.SHOWDOWN_USERNAME,       
+    process.env.SHOWDOWN_PASSWORD,   
+    server
 );
 
 
 
 // Start connection
-console.log("[Mirror Move] Logging in as " + process.env.SHOWDOWN_USER + "to " + bot.server);
+console.log("[Mirror Move] Logging in as:  " + process.env.SHOWDOWN_USERNAME  + "  to  " + bot.server);
 bot.connect();
