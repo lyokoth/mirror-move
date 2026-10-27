@@ -3,6 +3,7 @@ import fetch from "node-fetch";
 import { URLSearchParams, fileURLToPath } from "url";
 import path from "path";
 import fs from "fs";
+import { EventEmitter } from "ws";
 
 // Get __dirname in ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -20,7 +21,7 @@ try {
     console.error("[Mirror Move] Could not load randbats data file:", err.message);
 }
 
-export class ShowdownClient {
+export class ShowdownClient extends EventEmitter {
     constructor(username, password, server = "wss://sim3.psim.us/showdown/websocket") {
         this.username = username;
         this.password = password;

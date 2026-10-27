@@ -4,7 +4,7 @@ import WebSocket from 'ws';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { Client, Collection, GatewayIntentBits } from 'discord.js';
 import dotenv from 'dotenv';
-import { ShowdownClient } from './client/ShowdownClient';
+import { ShowdownClient } from './client/ShowdownClient.js';
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
